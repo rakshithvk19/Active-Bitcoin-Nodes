@@ -52,9 +52,11 @@ const NodeList: React.FC = () => {
       <div className="border border-red-500 p-1">
         <NodeListColumnHeader />
         <div className="flex flex-col gap-1">
-          {countryNodes.slice(startIndex, endIndex).map((node, i) => (
-            <NodeItem key={i} nodeData={node} />
-          ))}
+          {countryNodes
+            .slice(startIndex, endIndex)
+            .map((node: CountryNode, i: number) => (
+              <NodeItem key={i} nodeData={node} />
+            ))}
         </div>
       </div>
       <PaginationDetails

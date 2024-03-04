@@ -1,18 +1,25 @@
 "use client";
-
+//Importing React hooks
 import { createContext, useContext } from "react";
+
+//Importing Next.js hooks
 import { useSearchParams } from "next/navigation";
-import data from "../../../data.json";
+
+//Importing Providers
 import { CountryContext } from "../CountryProvider";
+
+//Importing hardcoded data
+import data from "../../../data.json";
 
 export const NodeContext = createContext(null);
 
-export const NodeProvider = ({ children }) => {
+export const NodeProvider = ({ children }: { children: React.ReactNode }) => {
   const searchParams = useSearchParams();
-  const { total_nodes } = useContext(CountryContext);
-  const countryCode = searchParams.get("countrycode");
+  const countryCode: string | null = searchParams.get("countrycode");
 
-  const nodeData = {
+  const { total_nodes } = useContext(CountryContext);
+
+  const NodeProviderValue: NodeProviderValueType = {
     countryCode: countryCode,
     noOfActiveNodes: fetchActiveNodesByCountryCode(
       countryCode,
@@ -26,11 +33,17 @@ export const NodeProvider = ({ children }) => {
   };
 
   return (
-    <NodeContext.Provider value={nodeData}>{children}</NodeContext.Provider>
+    <NodeContext.Provider value={NodeProviderValue}>
+      {children}
+    </NodeContext.Provider>
   );
 };
 
-const fetchActiveNodesByCountryCode = (countryCodeData, nodeData) => {
+//Function to fetch active nodes based on the country code.
+const fetchActiveNodesByCountryCode = (
+  countryCodeData: string,
+  nodeData: Nodes
+) => {
   const countryNodes = [];
   const nodes = nodeData;
 
@@ -43,9 +56,10 @@ const fetchActiveNodesByCountryCode = (countryCodeData, nodeData) => {
   return countryNodes;
 };
 
+//Function to fetch the percentage of active nodes.
 const percentageOfActiveNodes = (
-  totalNoOfNodesData,
-  noOfActiveNodesByCountryData
+  totalNoOfNodesData: string,
+  noOfActiveNodesByCountryData: string
 ) => {
   const totalNoOfNodes = Number(totalNoOfNodesData);
   const noOfActiveNodesByCountry = Number(noOfActiveNodesByCountryData);

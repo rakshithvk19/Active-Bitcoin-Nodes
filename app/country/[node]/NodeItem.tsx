@@ -2,33 +2,12 @@ import React from "react";
 import displayCountryName from "../displayCountryName";
 
 interface Props {
-  nodeData: Nodes;
+  nodeData: CountryNode;
 }
-
-//Defining structure for Nodes(placeholder for Node-Info)
-interface Nodes {
-  [key: string]: NodeInfo;
-}
-
-//Defining structure for NodeInfo that containes details about the node.
-type NodeInfo = [
-  number | null,
-  string | null,
-  number | null,
-  number | null,
-  number | null,
-  string | null,
-  string | null,
-  string | null,
-  number | null,
-  number | null,
-  string | null,
-  string | null,
-  string | null
-];
 
 const NodeItem: React.FC<Props> = ({ nodeData }) => {
   const address: string = Object.keys(nodeData)[0];
+
   const [
     protocolVersion,
     userAgent,
@@ -43,7 +22,7 @@ const NodeItem: React.FC<Props> = ({ nodeData }) => {
     timeZone,
     ASN,
     organizationName,
-  ] = Object.values(nodeData)[0];
+  ]: NodeInfo = Object.values(nodeData)[0];
 
   return (
     <div

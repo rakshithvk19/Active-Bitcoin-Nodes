@@ -6,7 +6,11 @@ import data from "../../data.json";
 
 export const CountryContext = createContext(null);
 
-export const CountryProvider = ({ children }) => {
+export const CountryProvider = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
   const [snapshot, setSnapshot] = useState<SnapshotType | null>(null); //State to capture the snapshot from the API every 10 mins
 
   // useEffect to fetch the API data
