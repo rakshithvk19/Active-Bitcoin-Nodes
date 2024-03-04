@@ -4,7 +4,7 @@ import { useEffect, useState, useContext } from "react";
 import CountryItem from "./CountryItem";
 import { CountryContext } from "./CountryProvider";
 
-const CountryList = () => {
+const CountryList: React.FC = () => {
   // Initialize countries as an empty array
   const [countries, setCountries] = useState<Array<[string, number]>>([]);
   const { noOfActiveNodesByCountry } = useContext(CountryContext);

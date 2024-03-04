@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { CountryContext } from "./CountryProvider";
 import { formatTimeStamp } from "./formatTimestamp";
 
-export const ActiveNodesSummary = () => {
+export const ActiveNodesSummary: React.FC = () => {
   const { total_nodes, timestamp } = useContext(CountryContext);
 
   return (
