@@ -1,31 +1,32 @@
 "use client";
 
 import { createContext, useState, useEffect, Children } from "react";
+
 import data from "../../data.json";
 
-//Defining the structure for SnapshotType
-export interface SnapshotType {
-  timestamp: number;
-  total_nodes: number;
-  latest_height: number;
-  nodes: {
-    [key: string]: [
-      number,
-      string,
-      number,
-      number,
-      number,
-      string | null,
-      string | null,
-      string | null,
-      number | null,
-      number | null,
-      string | null,
-      string,
-      string
-    ];
-  };
-}
+// //Defining the structure for SnapshotType
+// export interface SnapshotType {
+//   timestamp: number | null;
+//   total_nodes: number | null;
+//   latest_height: number | null;
+//   nodes: {
+//     [key: string]: [
+//       number,
+//       string,
+//       number,
+//       number,
+//       number,
+//       string | null,
+//       string | null,
+//       string | null,
+//       number | null,
+//       number | null,
+//       string | null,
+//       string,
+//       string
+//     ];
+//   };
+// }
 
 //Defining structure for Nodes(placeholder for Node-Info)
 export interface Nodes {
