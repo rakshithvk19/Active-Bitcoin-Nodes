@@ -1,8 +1,8 @@
 "use client";
 
-import { createContext, useState, useEffect, Children } from "react";
+import { createContext, useState, useEffect, useMemo } from "react";
 
-import data from "../../data.json";
+// import data from "../../data.json";
 
 export const CountryContext = createContext(null);
 
@@ -17,11 +17,11 @@ export const CountryProvider = ({
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // const response = await fetch(
-        //   "https://bitnodes.io/api/v1/snapshots/latest/"
-        // );
-        // const result: SnapshotType = await response.json();
-        const result: SnapshotType = data;
+        const response = await fetch(
+          "https://bitnodes.io/api/v1/snapshots/latest/"
+        );
+        const result: SnapshotType = await response.json();
+        // const result: SnapshotType = data;
         setSnapshot(result);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -36,11 +36,25 @@ export const CountryProvider = ({
     };
   }, []);
 
-  const CountryProviderValue: CountryProviderValueType = {
-    total_nodes: data.total_nodes,
-    timestamp: data.timestamp,
-    noOfActiveNodesByCountry: fetchNoOfActiveNodesByCountry(data.nodes),
-  };
+  // Update CountryProviderValue whenever snapshot changes
+  const CountryProviderValue = useMemo(() => {
+    if (snapshot) {
+      return {
+        total_nodes: snapshot.total_nodes,
+        timestamp: snapshot.timestamp,
+        noOfActiveNodesByCountry: fetchNoOfActiveNodesByCountry(snapshot.nodes),
+        nodes: snapshot.nodes,
+      };
+    }
+
+    // If snapshot is null, return a default value or handle it appropriately
+    return {
+      total_nodes: 0,
+      timestamp: "",
+      noOfActiveNodesByCountry: {},
+      nodes: {},
+    };
+  }, [snapshot]);
 
   return (
     <CountryContext.Provider value={CountryProviderValue}>

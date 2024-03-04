@@ -9,7 +9,7 @@ import { useSearchParams } from "next/navigation";
 import { CountryContext } from "../CountryProvider";
 
 //Importing hardcoded data
-import data from "../../../data.json";
+// import data from "../../../data.json";
 
 export const NodeContext = createContext(null);
 
@@ -17,18 +17,18 @@ export const NodeProvider = ({ children }: { children: React.ReactNode }) => {
   const searchParams = useSearchParams();
   const countryCode: string | null = searchParams.get("countrycode");
 
-  const { total_nodes } = useContext(CountryContext);
+  const { total_nodes, nodes } = useContext(CountryContext);
 
   const NodeProviderValue: NodeProviderValueType = {
     countryCode: countryCode,
     noOfActiveNodes: fetchActiveNodesByCountryCode(
       countryCode,
-      data.nodes
+      nodes
     ).length.toFixed(0),
-    countryNodes: fetchActiveNodesByCountryCode(countryCode, data.nodes),
+    countryNodes: fetchActiveNodesByCountryCode(countryCode, nodes),
     percentOfActiveNodes: percentageOfActiveNodes(
       total_nodes,
-      fetchActiveNodesByCountryCode(countryCode, data.nodes).length.toFixed(0)
+      fetchActiveNodesByCountryCode(countryCode, nodes).length.toFixed(0)
     ),
   };
 
