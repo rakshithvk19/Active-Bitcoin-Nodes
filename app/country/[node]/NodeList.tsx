@@ -2,6 +2,11 @@
 
 import { useState, useEffect } from "react";
 import NodeListColumnHeader from "./NodeListColumnHeader";
+import { useContext } from "react";
+import { NodeContext } from "./NodeProvider";
+import PaginationDetails from "./PaginationDetails";
+
+import NodeItem from "./NodeItem";
 
 const NodeList: React.FC = () => {
   // const nodeList = fetchNodesByCountryCode(countryCode, nodes);
@@ -12,6 +17,8 @@ const NodeList: React.FC = () => {
 
   const startIndex: number = (currentPage - 1) * NoOfNodesInEachPage;
   const endIndex: number = startIndex + NoOfNodesInEachPage;
+
+  const { countryNodes } = useContext(NodeContext);
 
   //function to increase the current page on a button click
   const nextPage = (): void => {
@@ -27,35 +34,35 @@ const NodeList: React.FC = () => {
     }
   };
 
-  //useEffect hook to synchronize changes in countryNodes and totalPages and set current page to 1.
-  //   useEffect(() => {
-  //     const totalNodesInCountry: number = countryNodes.length;
-  //     setCurrentPage(1);
-  //     setTotalPages(Math.ceil(totalNodesInCountry / NoOfNodesInEachPage));
-  //   }, [countryNodes]);
+  // useEffect hook to synchronize changes in countryNodes and totalPages and set current page to 1.
+  useEffect(() => {
+    const totalNodesInCountry: number = countryNodes.length;
+    setCurrentPage(1);
+    setTotalPages(Math.ceil(totalNodesInCountry / NoOfNodesInEachPage));
+  }, [countryNodes]);
 
   return (
     <>
-      {/* <PaginationDetails
+      <PaginationDetails
         currentPage={currentPage}
         totalPages={totalPages}
         nextPage={nextPage}
         prevPage={prevPage}
-      /> */}
+      />
       <div className="border border-red-500 p-1">
         <NodeListColumnHeader />
-        {/* <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-1">
           {countryNodes.slice(startIndex, endIndex).map((node, i) => (
-            <NodeListItem key={i} nodeData={node} />
+            <NodeItem key={i} nodeData={node} />
           ))}
-        </div> */}
+        </div>
       </div>
-      {/* <PaginationDetails
+      <PaginationDetails
         currentPage={currentPage}
         totalPages={totalPages}
         nextPage={nextPage}
         prevPage={prevPage}
-      /> */}
+      />
     </>
   );
 };
