@@ -5,10 +5,12 @@ const displayCountryName = (countryCode: string): string | undefined => {
     type: "region",
   });
 
-  let countryName: string | undefined = "N/A";
+  let countryName: string | undefined = "TOR Network";
 
   if (countryCode !== "null") {
-    countryName = regionNamesInEnglish.of(countryCode);
+    if (countryCode !== null) {
+      countryName = regionNamesInEnglish.of(countryCode);
+    }
   }
 
   return countryName;

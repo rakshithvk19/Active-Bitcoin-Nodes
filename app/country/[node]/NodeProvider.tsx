@@ -50,9 +50,12 @@ const fetchActiveNodesByCountryCode = (
   for (const [node, details] of Object.entries(nodes)) {
     if (details[7] === countryCodeData) {
       countryNodes.push({ [node]: details });
+    } else if (countryCodeData === "null" && details[7] === null) {
+      countryNodes.push({ [node]: details });
     }
   }
 
+  // console.log(countryNodes);
   return countryNodes;
 };
 

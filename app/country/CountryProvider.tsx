@@ -2,7 +2,7 @@
 
 import { createContext, useState, useEffect, useMemo } from "react";
 
-// import data from "../../data.json";
+import data from "../../data.json";
 
 export const CountryContext = createContext(null);
 
@@ -72,12 +72,11 @@ function fetchNoOfActiveNodesByCountry(
 
   for (const node in nodes) {
     const countryCode = nodes[node][7];
-    if (countryCode != null) {
-      if (!(countryCode in countryCodes)) {
-        countryCodes[countryCode] = 1;
-      } else {
-        countryCodes[countryCode]++;
-      }
+
+    if (!(countryCode in countryCodes)) {
+      countryCodes[countryCode] = 1;
+    } else {
+      countryCodes[countryCode]++;
     }
   }
 
