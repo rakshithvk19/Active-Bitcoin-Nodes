@@ -7,7 +7,8 @@ const displayCountryName = (countryCode: string): string | undefined => {
 
   let countryName: string | undefined = "N/A";
 
-  if (countryCode !== "null") {
+  // console.log(typeof countryCode);
+  if (countryCode !== "N/A") {
     countryName = regionNamesInEnglish.of(countryCode);
   }
 

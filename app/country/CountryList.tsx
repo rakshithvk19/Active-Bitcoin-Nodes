@@ -8,6 +8,7 @@ const CountryList: React.FC = () => {
   // Initialize countries as an empty array
   const [countries, setCountries] = useState<Array<[string, number]>>([]);
   const { noOfActiveNodesByCountry } = useContext(CountryContext);
+
   useEffect(() => {
     // Set the value of countries inside the useEffect hook
     setCountries(Object.entries(noOfActiveNodesByCountry));

@@ -1,23 +1,23 @@
 //Defining the structure for SnapshotType
 interface SnapshotType {
-  timestamp: number | null;
-  total_nodes: number | null;
-  latest_height: number | null;
+  timestamp: number;
+  total_nodes: number;
+  latest_height: number;
   nodes: {
     [key: string]: [
-      number | null,
-      string | null,
-      number | null,
-      number | null,
-      number | null,
-      string | null,
-      string | null,
-      string | null,
-      number | null,
-      number | null,
-      string | null,
-      string | null,
-      string | null
+      number,
+      string,
+      number,
+      number,
+      number,
+      string,
+      string,
+      string,
+      number,
+      number,
+      string,
+      string,
+      string
     ];
   };
 }
@@ -29,25 +29,26 @@ interface Nodes {
 
 //Defining structure for NodeInfo that containes details about the node.
 type NodeInfo = [
-  number | null,
-  string | null,
-  number | null,
-  number | null,
-  number | null,
-  string | null,
-  string | null,
-  string | null,
-  number | null,
-  number | null,
-  string | null,
-  string | null,
-  string | null
+  number,
+  string,
+  number,
+  number,
+  number,
+  string,
+  string,
+  string,
+  number,
+  number,
+  string,
+  string,
+  string
 ];
 
 interface CountryProviderValueType {
   total_nodes: number;
   timestamp: number;
   noOfActiveNodesByCountry: NoOfActiveNodesByCountryType;
+  nodes: Nodes;
 }
 
 interface NoOfActiveNodesByCountryType {

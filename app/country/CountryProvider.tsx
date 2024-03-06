@@ -1,17 +1,30 @@
 "use client";
 
+//Importing react hooks
 import { createContext, useState, useEffect, useMemo } from "react";
 
 import data from "../../data.json";
 
-export const CountryContext = createContext(null);
+//Defining Country Context
+export const CountryContext = createContext<CountryProviderValueType>({
+  total_nodes: 0,
+  timestamp: 0,
+  noOfActiveNodesByCountry: {},
+  nodes: {},
+});
 
 export const CountryProvider = ({
   children,
 }: {
   children: React.ReactNode;
 }) => {
-  const [snapshot, setSnapshot] = useState<SnapshotType | null>(null); //State to capture the snapshot from the API every 10 mins
+  //Defining the state for snapshot.
+  const [snapshot, setSnapshot] = useState<SnapshotType>({
+    timestamp: 0,
+    total_nodes: 0,
+    latest_height: 0,
+    nodes: {},
+  });
 
   // useEffect to fetch the API data
   useEffect(() => {
@@ -21,7 +34,7 @@ export const CountryProvider = ({
           "https://bitnodes.io/api/v1/snapshots/latest/"
         );
         const result: SnapshotType = await response.json();
-        // const result: SnapshotType = data;
+        // const result: SnapshotType = data as SnapshotType;
         setSnapshot(result);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -50,7 +63,7 @@ export const CountryProvider = ({
     // If snapshot is null, return a default value or handle it appropriately
     return {
       total_nodes: 0,
-      timestamp: "",
+      timestamp: 0,
       noOfActiveNodesByCountry: {},
       nodes: {},
     };

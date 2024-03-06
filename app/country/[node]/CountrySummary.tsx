@@ -1,5 +1,5 @@
 "use client";
-import displayCountryName from "../displayCountryName";
+import displayCountryName from "./displayCountryName";
 import { useContext } from "react";
 import { NodeContext } from "./NodeProvider";
 import { CountryContext } from "../CountryProvider";
@@ -14,6 +14,7 @@ const CountrySummary: React.FC = () => {
         Country Name :
         <span className="font-bold text-white">
           {" "}
+          {/* {console.log(countryCode)} */}
           {displayCountryName(countryCode)}
         </span>
       </p>

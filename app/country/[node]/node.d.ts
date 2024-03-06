@@ -1,12 +1,12 @@
 interface NodeProviderValueType {
-  countryCode: string | null;
+  countryCode: string;
   noOfActiveNodes: string;
   countryNodes: CountryNodesType;
-  percentageOfActiveNodes: string;
+  percentOfActiveNodes: string;
 }
 
 type CountryNodesType = [CountryNode];
 
 interface CountryNode {
-  [string]: NodeInfo;
+  [key: string]: NodeInfo;
 }

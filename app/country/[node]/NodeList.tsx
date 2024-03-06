@@ -19,7 +19,7 @@ const NodeList: React.FC = () => {
   const endIndex: number = startIndex + NoOfNodesInEachPage;
 
   const { countryNodes } = useContext(NodeContext);
-
+  // console.log(countryNodes);
   //function to increase the current page on a button click
   const nextPage = (): void => {
     if (currentPage < totalPages) {
@@ -52,10 +52,12 @@ const NodeList: React.FC = () => {
       <div className="border border-red-500 p-1">
         <NodeListColumnHeader />
         <div className="flex flex-col gap-1">
+          {/* {console.log(countryNodes)} */}
           {countryNodes
             .slice(startIndex, endIndex)
             .map((node: CountryNode, i: number) => (
               <NodeItem key={i} nodeData={node} />
+              // <>{console.log(node)}</>
             ))}
         </div>
       </div>
