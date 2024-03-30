@@ -16,7 +16,7 @@ const CountryItem: React.FC<Props> = ({ index, countryCode, nodeCount }) => {
     if (countryCode === "null") {
       countryCode = "N/A";
     }
-    router.push(`/nodes?countrycode=${countryCode}`);
+    router.push(`/node?countrycode=${countryCode}`);
   };
   return (
     <>

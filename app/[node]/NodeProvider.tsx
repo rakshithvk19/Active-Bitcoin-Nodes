@@ -66,7 +66,6 @@ const fetchActiveNodesByCountryCode = (
       countryNodes.push({ [node]: details });
     }
   }
-  console.log(countryNodes);
 
   return countryNodes;
 };

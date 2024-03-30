@@ -1,5 +1,5 @@
 "use client";
-import displayCountryName from "./displayCountryName";
+import displayCountryName from "./displayCountryNames";
 import { useContext } from "react";
 import { NodeContext } from "./NodeProvider";
 import { CountryContext } from "../CountryProvider";

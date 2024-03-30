@@ -3,7 +3,7 @@
 //Importing react hooks
 import { createContext, useState, useEffect, useMemo } from "react";
 
-import data from "../../data.json";
+import data from "../data.json";
 
 //Defining Country Context
 export const CountryContext = createContext<CountryProviderValueType>({
@@ -30,11 +30,11 @@ export const CountryProvider = ({
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          "https://bitnodes.io/api/v1/snapshots/latest/"
-        );
-        const result: SnapshotType = await response.json();
-        // const result: SnapshotType = data as SnapshotType;
+        // const response = await fetch(
+        //   "https://bitnodes.io/api/v1/snapshots/latest/"
+        // );
+        // const result: SnapshotType = await response.json();
+        const result: SnapshotType = data as SnapshotType;
         setSnapshot(result);
       } catch (error) {
         console.error("Error fetching data:", error);
